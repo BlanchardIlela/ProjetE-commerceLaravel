@@ -61,12 +61,17 @@
 							<td>{{ number_format($product->regularPrice, 2, ',', ' ') . ' €' }}</td>
 							    <td>
         <div class="form-group d-flex" id="preview_imageUrl" style="max-width: 100%;">
-        @foreach ([$product->imageUrls()[0]] as $url) 
-            <img src="{{Str::startsWith($url, 'http') ? $url : Storage::url($url)}}"
-                alt="Prévisualisation de l\'image"
-                style="max-width: 100px; display: block;"
-                />
-        @endforeach
+            <!-- Afficher seulement image à l'écran -->
+        @if(!empty($product->imageUrls) && isset($product->imageUrls[0]))
+            <img
+                src="{{ Str::startsWith($product->imageUrls[0], 'http')
+                    ? $product->imageUrls[0]
+                    : Storage::url($product->imageUrls[0]) }}"
+                alt="Prévisualisation"
+                style="max-width:100px;">
+        @else
+            <span class="text-muted">Pas d'image</span>
+        @endif
     </div>
 </td>
 							<td>{{ $product->brand }}</td>

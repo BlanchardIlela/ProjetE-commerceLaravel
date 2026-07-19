@@ -51,7 +51,7 @@
         <td>
             <div class="form-group d-flex" id="preview_imageUrls" style="max-width: 100%;">
                 <!-- Assurez-vous que $this->product->imageUrls est un tableau d'URLs -->
-               @foreach ($product->imageUrls() as $url)
+               @foreach ($product->imageUrls ?? [] as $url)
                     <img src="{{ Str::startsWith($url, 'http') ? $url : Storage::url($url) }}"
                          alt="Prévisualisation de l'image"
                          style="max-width: 100px; display: block;"

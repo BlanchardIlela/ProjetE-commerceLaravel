@@ -11,6 +11,10 @@ class Product extends Model
 	
 	protected $fillable = ['name', 'slug', 'description', 'moreDescription', 'additionalInfos', 'stock', 'soldePrice', 'regularPrice', 'imageUrls', 'brand', 'isAvailable', 'isBestSeller', 'isNewArrival', 'isFeatured', 'isSpecialOffer', 'categories'];
 
+	protected $casts = [
+		'imageUrls' => 'array',
+	];
+	
 	public function categories()
 	{
 		
